@@ -1,7 +1,13 @@
 <template>
   <div class="gallery">
-    <div class="wrapper" v-for="(item, index) in images">
-      <img :data-src="item.imageUrl" class="lazyload" @click="setActive(index)">
+
+    <div class="wrapper" v-for="(item, index) in images" >
+      <img
+        v-bind:src="item.imageUrl"
+        class="lazyload"
+        @click="setActive(index)"
+        v-if="showOnlyOne?index == 0: true"
+      >
     </div>
   </div>
 </template>
@@ -9,7 +15,8 @@
 <script type="text/ecmascript-6">
   export default {
     props: {
-      images: Array
+      images: Array,
+      showOnlyOne: Boolean
     },
     methods: {
       setActive (idx) {
@@ -29,8 +36,8 @@
       padding: 2px 1px
       img
         display: block
-        height: 100px
-        width: auto
+        height: 282px
+        width: 301px
         border: 0px
         border-radius: 2px
         cursor: pointer
